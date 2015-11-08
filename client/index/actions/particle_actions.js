@@ -17,11 +17,14 @@ var ParticleActions = {
       }));
       var data = models[0];
 
-      Dispatcher.dispatch({
-        actionType: ParticleConstants.GET_CONFIDENCE,
-        confidence: getConfidence(data.humidity, data.temp, humidArray, tempArray),
-        success: true
-      });
+      if(data){
+        Dispatcher.dispatch({
+          actionType: ParticleConstants.GET_CONFIDENCE,
+          confidence: getConfidence(data.humidity, data.temp, humidArray, tempArray),
+          success: true
+        });
+      }
+      
     })
     .fail(function(err){
       Dispatcher.dispatch({
