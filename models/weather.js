@@ -6,7 +6,7 @@ var weatherSchema = new mongoose.Schema({
   //baroTemp: Number,
   //pressure: Number,
   protonID: String,
-  timeCreated: Date
+  timeCreated: {type: Date, default: Date.now}
 });
 
 var Weather = mongoose.model('Weather', weatherSchema);

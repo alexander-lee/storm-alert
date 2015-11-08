@@ -4,7 +4,9 @@ var ParticleConstants = require('../constants/particle_constants.js');
 var ParticleActions = {
   getConfidence: function(protonID) {
     //Add Query within the day
-    $.get('/api', protonID && {protonID: protonID})
+    var query = {timeCreated: {"$gte": new Date() - 60 * 60 * 1000, "$lte": new Date()}};
+    if(protonID) query['protonID'] = protonID;
+    $.get('/api', query)
     .then(function(models){;
       models.sort(function(a, b){
         return new Date(b.timeCreated) - new Date(a.timeCreated);

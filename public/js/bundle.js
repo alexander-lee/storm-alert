@@ -98,7 +98,9 @@ var ParticleConstants = require('../constants/particle_constants.js');
 var ParticleActions = {
   getConfidence: function (protonID) {
     //Add Query within the day
-    $.get('/api', protonID && { protonID: protonID }).then(function (models) {
+    var query = { timeCreated: { "$gte": new Date() - 60 * 60 * 1000, "$lte": new Date() } };
+    if (protonID) query['protonID'] = protonID;
+    $.get('/api', query).then(function (models) {
       ;
       models.sort(function (a, b) {
         return new Date(b.timeCreated) - new Date(a.timeCreated);
@@ -111,11 +113,13 @@ var ParticleActions = {
       }));
       var data = models[0];
 
-      Dispatcher.dispatch({
-        actionType: ParticleConstants.GET_CONFIDENCE,
-        confidence: getConfidence(data.humidity, data.temp, humidArray, tempArray),
-        success: true
-      });
+      if (data) {
+        Dispatcher.dispatch({
+          actionType: ParticleConstants.GET_CONFIDENCE,
+          confidence: getConfidence(data.humidity, data.temp, humidArray, tempArray),
+          success: true
+        });
+      }
     }).fail(function (err) {
       Dispatcher.dispatch({
         actionType: ParticleConstants.GET_CONFIDENCE,
