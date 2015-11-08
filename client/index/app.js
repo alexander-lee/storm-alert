@@ -1,7 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Window = require('./components/Window.jsx')
+
 ReactDOM.render(
-  <span>Hello</span>,
+  <Window />,
   document.getElementById('content')
 );
