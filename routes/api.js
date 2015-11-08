@@ -35,4 +35,10 @@ router.post('/', function(req, res, next){
   });
 });
 
+router.delete('/', function(req, res, next){
+  Weather.remove({}, function(err){
+    if(err) res.send({error: err.toString()});
+  });
+});
+
 module.exports = router;
