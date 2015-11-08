@@ -16,8 +16,8 @@ router.post('/', function(req, res, next){
   //Set Values
   weather.temp = req.body.temp;
   weather.humidity = req.body.humidity;
-  //weather.timeCreated = req.body.timecreated;
-  //weather.protonID = req.body.guid;
+  weather.timeCreated = req.body.timecreated;
+  weather.protonID = req.body.guid;
 
   weather.save(function(err){
     if(!err){
