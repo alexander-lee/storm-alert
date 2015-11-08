@@ -14,7 +14,7 @@ var Window = React.createClass({
     ParticleStore.addListener(this._onChange);
 
     ParticleActions.getConfidence();
-    setInterval(ParticleActions.getConfidence, 1000);//5*60*1000);
+    setInterval(ParticleActions.getConfidence, 5*60*1000);
     
   },
 
@@ -28,9 +28,11 @@ var Window = React.createClass({
         <br />
         <label className="label">chance of rainfall in your area based on your Particle Sensor</label>
         <br />
-        <label className="label alert" ref="alert">If I were you, I would find Shelter.</label> 
+        <p className="label alert" ref="alert">If I were you, I would find Shelter.</p> 
         <label className="label alert" ref="error">Error: Unable to Retrieve Weather Data.</label>
       </div>
+
+      //Get Proton ID
     );
   },
 

@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/sampledb');
+mongoose.connect('mongodb://104.131.210.228:3000:27017/weatherdb');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');

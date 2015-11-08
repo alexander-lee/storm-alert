@@ -82,6 +82,6 @@ function getConfidence(rh, temp, rhSlope, tempSlope){
   var tempSlopeValue = tempAverage != 0 ? Math.abs((tempSlope[tempSlope.length-1] - tempAverage) / tempAverage) : 0;
 
   console.log(rhSlopeValue + " " + tempSlopeValue + " " + rh + " " + dpd);
-  var confidence = (rh * 0.4) + ((100-dpd) * 0.4) + (rhSlopeValue * 0.2) + (tempSlopeValue * 0.2);
+  var confidence = (rh * 0.4) + ((100-dpd) * 0.4) + (rhSlopeValue * 0.1) + (tempSlopeValue * 0.1);
   return confidence;
 }
